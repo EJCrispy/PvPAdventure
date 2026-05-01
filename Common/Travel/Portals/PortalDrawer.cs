@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.ID;
 
 namespace PvPAdventure.Common.Travel.Portals;
 
@@ -68,6 +69,35 @@ public static class PortalDrawer
             );
 
             gate.SpawnReturnPortalDust();
+        }
+    }
+
+    public static void SpawnPortalCreationBurst(Vector2 worldPos, int team)
+    {
+        Color color = team > 0 && team < Main.teamColor.Length
+            ? Main.teamColor[team]
+            : Color.White;
+
+        const int dustCount = 56;
+
+        for (int i = 0; i < dustCount; i++)
+        {
+            float angle = MathHelper.TwoPi * i / dustCount + Main.rand.NextFloat(-0.06f, 0.06f);
+            Vector2 direction = angle.ToRotationVector2();
+            Vector2 position = worldPos + direction * Main.rand.NextFloat(14f, 32f);
+            Vector2 velocity = direction * Main.rand.NextFloat(3.4f, 7.2f);
+
+            Dust dust = Dust.NewDustPerfect(
+                position,
+                DustID.FireworksRGB,
+                velocity,
+                80,
+                color,
+                Main.rand.NextFloat(1.15f, 1.9f)
+            );
+
+            dust.noGravity = true;
+            dust.fadeIn = Main.rand.NextFloat(0.5f, 1.1f);
         }
     }
 

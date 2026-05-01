@@ -22,8 +22,16 @@ public class PortalCreatorItem : ModItem
 {
     public override string Texture => "PvPAdventure/Assets/Portals/PortalCreator_NoTeam";
 
-    public static int GetCreationTimeFrames() =>
-        Math.Max(0, ModContent.GetInstance<ServerConfig>().TravelPortalCreationTimeSeconds * 60);
+    public static int GetCreationTimeFrames()
+    {
+        ServerConfig config = ModContent.GetInstance<ServerConfig>();
+        int seconds = config.TravelPortalCreationTimePreHardmodeSeconds;
+
+        if (Main.hardMode)
+            seconds = config.TravelPortalCreationTimeHardmodeSeconds;
+
+        return Math.Max(0, seconds * 60);
+    }
 
     #region Item defaults
     /// <summary>
@@ -164,7 +172,8 @@ public class PortalCreatorItem : ModItem
         Vector2 offset = new(player.direction * -9f, -9f);
         player.itemLocation += offset;
 
-        if (player.velocity.LengthSquared() > 0f)
+        //if (player.velocity.LengthSquared() > 0f)
+        if (player.controlLeft || player.controlRight || player.controlJump || player.controlUp || player.controlDown || player.controlHook || player.controlMount)
         {
             if (player.whoAmI == Main.myPlayer)
             {
@@ -287,7 +296,9 @@ public class PortalCreatorItem : ModItem
 
     public override void ModifyTooltips(List<TooltipLine> tooltips)
     {
-        int seconds = ModContent.GetInstance<ServerConfig>().TravelPortalCreationTimeSeconds;
+        //int seconds = ModContent.GetInstance<ServerConfig>().TravelPortalCreationTimeSeconds;
+        int seconds = PortalCreatorItem.GetCreationTimeFrames() / 60;
+
         string key = Keybinds.UsePortalCreatorLabel;
 
         tooltips.Add(new TooltipLine(Mod, "PortalCreatorAdventure", "Opens up a portal to go on adventures"));

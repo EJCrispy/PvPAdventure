@@ -1,9 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
 using MonoMod.Cil;
 using PvPAdventure.Common.Combat.TeamBoss;
 using PvPAdventure.Core.Config;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -31,7 +32,7 @@ public class CombatManager : ModSystem
         ProjectileID.CursedFlameHostile,
         ProjectileID.EyeFire,
         ProjectileID.DeathLaser,
-        ProjectileID.BombSkeletronPrime,
+        ProjectileID.BombSkeletronPrime, // duplicate?
         ProjectileID.SeedPlantera,
         ProjectileID.PoisonSeedPlantera,
         ProjectileID.ThornBall,
@@ -46,8 +47,11 @@ public class CombatManager : ModSystem
         ProjectileID.Cthulunado,
         // This is also shot by Gastropods, but that's acceptable fallout.
         ProjectileID.PinkLaser,
-        ProjectileID.BombSkeletronPrime,
+        ProjectileID.BombSkeletronPrime, // duplicate?
     ];
+
+    public static bool IsBossProjectile(Projectile projectile) =>
+        BossProjectiles.Contains((short)projectile.type);
 
     public const int PvPImmunityCooldownId = -100;
     public const int PaladinsShieldReflectImmunityCooldownId = -101;

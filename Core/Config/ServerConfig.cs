@@ -118,8 +118,13 @@ public class ServerConfig : ModConfig
 
     [BackgroundColor(30, 150, 150)]
     [Range(0, 60)]
+    [DefaultValue(5)]
+    public int TravelPortalCreationTimePreHardmodeSeconds { get; set; }
+
+    [BackgroundColor(30, 150, 150)]
+    [Range(0, 60)]
     [DefaultValue(10)]
-    public int TravelPortalCreationTimeSeconds { get; set; }
+    public int TravelPortalCreationTimeHardmodeSeconds { get; set; }
 
     [BackgroundColor(30, 150, 150)]
     [Range(0, 60)]
