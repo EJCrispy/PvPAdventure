@@ -340,7 +340,7 @@ internal sealed class TravelSpectateSystem : ModSystem
 
         if (hasRestorePos)
         {
-            SpectateCameraFade.SetScreenPosition(restoreScreenPos);
+            SpectateCameraFade.SetScreenPosition(restoreScreenPos, allowFade: true);
             hasRestorePos = false;
         }
 
@@ -365,9 +365,9 @@ internal sealed class TravelSpectateSystem : ModSystem
         }
 
         if (player?.active == true)
-            SpectateCameraFade.SetScreenPosition(player.Center - new Vector2(Main.screenWidth, Main.screenHeight) * 0.5f);
+            SpectateCameraFade.SetScreenPosition(player.Center - new Vector2(Main.screenWidth, Main.screenHeight) * 0.5f, allowFade: true);
         else if (hasRestorePos)
-            SpectateCameraFade.SetScreenPosition(restoreScreenPos);
+            SpectateCameraFade.SetScreenPosition(restoreScreenPos, allowFade: true);
 
         hasRestorePos = false;
         ClearHover();
@@ -376,7 +376,7 @@ internal sealed class TravelSpectateSystem : ModSystem
 
     private static void SetCameraTo(Vector2 worldPosition)
     {
-        SpectateCameraFade.SetScreenPosition(worldPosition - new Vector2(Main.screenWidth, Main.screenHeight) * 0.5f);
+        SpectateCameraFade.SetScreenPosition(worldPosition - new Vector2(Main.screenWidth, Main.screenHeight) * 0.5f, allowFade: true);
     }
 
     private static void SetCameraToPlayer(Player player)
