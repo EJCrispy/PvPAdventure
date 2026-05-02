@@ -14,7 +14,7 @@ internal sealed class DebugMapScan : ModSystem
     public override void PostUpdateEverything()
     {
         // Only run once per x seconds.
-        const int delayInSeconds = 55;
+        const int delayInSeconds = 5;
         if (Main.GameUpdateCount % (60*delayInSeconds) != 0)
             return;
 
@@ -72,7 +72,7 @@ internal sealed class DebugMapScan : ModSystem
 
         // Report explored percentage.
         double pct = revealed * 100.0 / total;
-        //Log.Chat($"Map Explored: {pct:0.0000}%");
+        Log.Chat($"Map Explored: {pct:0.0000}%");
     }
 }
 #endif

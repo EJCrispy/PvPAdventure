@@ -21,7 +21,7 @@ public class MainMenuSystem : ModSystem
     public UserInterface ui;
     private bool wasHovered;
 
-    public static bool IsEnabled => false;
+    public static bool IsEnabled => true;
     public override void Load()
     {
         if (!IsEnabled) return;

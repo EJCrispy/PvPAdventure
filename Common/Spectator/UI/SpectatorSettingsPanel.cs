@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using PvPAdventure.Common.Spectator.Drawers.Inventory;
 using PvPAdventure.Common.Spectator.UI.Tabs;
 using PvPAdventure.Common.Spectator.UI.Tabs.NPCs;
 using PvPAdventure.Common.Spectator.UI.Tabs.World;
@@ -242,6 +243,9 @@ internal sealed class SpectatorSettingsPanel : UIElement
 
             BackgroundColor = isSelected() ? new Color(83, 97, 168) : new Color(63, 82, 151) * 0.85f;
             BorderColor = IsMouseHovering ? Color.Yellow : isSelected() ? Color.White : Color.Black;
+
+            // Move it 200px if playerhud is open, to avoid overlapping with the playerhud (drawing accessories and such) overlay
+            Left.Set(PlayerHudOverlay.IsAnyOpen ? -RightOffset - 200f : -RightOffset, 0f);
 
             if (IsMouseHovering)
             {
