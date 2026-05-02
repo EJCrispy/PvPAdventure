@@ -2,7 +2,6 @@ using Microsoft.Xna.Framework;
 using PvPAdventure.Common.MainMenu.API;
 using PvPAdventure.Common.MainMenu.API.Profile;
 using PvPAdventure.Common.MainMenu.API.Shop;
-using PvPAdventure.Common.MainMenu.Profile;
 using PvPAdventure.Common.MainMenu.Shop;
 using PvPAdventure.Common.MainMenu.State;
 using System;
@@ -106,7 +105,7 @@ public sealed class ShopUIState : MainMenuPageUIState
 #endif
 
         RebuildList();
-        gemsPanel.SetContent(MainMenuProfileState.Instance.Gems, MainMenuProfileState.Instance.HasSyncedFromBackend);
+        gemsPanel.RefreshFromProfile();
         SetCurrentAsyncState(AsyncProviderState.Loading, FormatLoadingMessage("shop profile and products"));
         _ = RefreshShopAsync();
     }
@@ -124,7 +123,7 @@ public sealed class ShopUIState : MainMenuPageUIState
         Main.QueueMainThreadAction(() =>
         {
             loading = false;
-            gemsPanel.SetContent(MainMenuProfileState.Instance.Gems, MainMenuProfileState.Instance.HasSyncedFromBackend);
+            gemsPanel.RefreshFromProfile();
 
             if (!profileResult.IsSuccess)
                 Log.Warn($"[ShopUI] Failed to refresh profile. {profileResult.ErrorMessage}");
@@ -219,7 +218,7 @@ public sealed class ShopUIState : MainMenuPageUIState
     {
         base.Update(gameTime);
 
-        gemsPanel.SetContent(MainMenuProfileState.Instance.Gems, MainMenuProfileState.Instance.HasSyncedFromBackend);
+        gemsPanel.RefreshFromProfile();
         UpdateHotfixScrollbar();
     }
 

@@ -83,6 +83,92 @@ public readonly struct MatchResult
         return $"{seconds} second{(seconds == 1 ? "" : "s")}";
     }
 
+    public bool TryGetLocalTeamPlacement(out Team localTeam, out int rank, out bool tied)
+    {
+        localTeam = Team.None;
+        rank = 0;
+        tied = false;
+
+        ulong localSteamId = LocalSteamId;
+        PlayerKD[] players = Players ?? [];
+
+        for (int i = 0; i < players.Length; i++)
+        {
+            if (players[i].SteamId == localSteamId)
+            {
+                localTeam = players[i].Team;
+                break;
+            }
+        }
+
+        if (localTeam == Team.None)
+            return false;
+
+        TeamPoints[] pts = TeamPoints ?? [];
+        int localPoints = int.MinValue;
+        List<int> points = [];
+
+        for (int i = 0; i < pts.Length; i++)
+        {
+            Team team = pts[i].Team;
+            if (team == Team.None)
+                continue;
+
+            int p = pts[i].Points;
+            points.Add(p);
+
+            if (team == localTeam)
+                localPoints = p;
+        }
+
+        if (localPoints == int.MinValue || points.Count == 0)
+            return false;
+
+        points.Sort((a, b) => b.CompareTo(a));
+
+        List<int> distinct = [];
+        for (int i = 0; i < points.Count; i++)
+        {
+            if (i == 0 || points[i] != points[i - 1])
+                distinct.Add(points[i]);
+        }
+
+        for (int i = 0; i < distinct.Count; i++)
+        {
+            if (distinct[i] == localPoints)
+            {
+                rank = i + 1;
+                break;
+            }
+        }
+
+        int tieCount = 0;
+        for (int i = 0; i < pts.Length; i++)
+        {
+            if (pts[i].Team != Team.None && pts[i].Points == localPoints)
+                tieCount++;
+        }
+
+        tied = tieCount > 1;
+        return rank > 0;
+    }
+
+    public int GetLocalGemReward()
+    {
+        if (!TryGetLocalTeamPlacement(out _, out int rank, out _))
+            return 0;
+
+        return rank switch
+        {
+            1 => 50,
+            2 => 25,
+            3 => 15,
+            4 => 5,
+            5 => 5,
+            _ => 0
+        };
+    }
+
     #region .nbt serialization
     public TagCompound ToTag()
     {

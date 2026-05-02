@@ -38,6 +38,7 @@ public abstract class MainMenuPageUIState : UIState
 
     // Dimensions
     protected virtual float MainPanelMinWidth => 650f;
+    protected virtual float MainPanelMaxWidth => 650f;
 
     protected virtual string HeaderLocalizationKey => string.Empty;
 
@@ -136,7 +137,7 @@ public abstract class MainMenuPageUIState : UIState
         const float mainPanelBottomReserve = 110f;
         const float widthPercent = 0.8f;
         float minWidth = MainPanelMinWidth;
-        const float maxWidth = 650f;
+        float maxWidth = Math.Max(minWidth, MainPanelMaxWidth);
 
         const float buttonHeight = 40f;
         const float buttonGap = 6f;

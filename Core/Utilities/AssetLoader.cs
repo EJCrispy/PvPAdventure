@@ -123,22 +123,35 @@ public static class Ass
     public static Asset<Texture2D> Icon_PvPBalancing;
     public static Asset<Texture2D> Icon_PvPBalancingv2;
 
-    // Shop item skins, sorted alphabetically
-    public static Asset<Texture2D> AdventureMirrorShimmer;
+    // --- Skins --- (sorted alphabetically)
+    public static Asset<Texture2D> BrutalistBreakerBlade;
+    public static Asset<Texture2D> CrimeraScourgeOfTheCorruptor;
+    public static Asset<Texture2D> DarkMatterPsychoKnife;
+    public static Asset<Texture2D> DefiledChainGuillotines;
+    public static Asset<Texture2D> FallenStarfury;
+    public static Asset<Texture2D> GrotesqueCursedFlames;
+    public static Asset<Texture2D> HologramMorningStar;
+    public static Asset<Texture2D> InfernalMeteorStaff;
     public static Asset<Texture2D> InfluxWaverCyberblade;
     public static Asset<Texture2D> LightDisc;
-    public static Asset<Texture2D> StaffOfEarthAvalancheStaff;
-    public static Asset<Texture2D> StaffOfEarthAvalancheStaffProjectile;
+    public static Asset<Texture2D> SculkTsunami;
     public static Asset<Texture2D> SniperRifleBlue;
     public static Asset<Texture2D> SniperRifleGreen;
     public static Asset<Texture2D> SniperRiflePink;
     public static Asset<Texture2D> SniperRifleRed;
     public static Asset<Texture2D> SniperRifleYellow;
-    public static Asset<Texture2D> TrueExcaliburBlossomHaze;
-    //public static Asset<Texture2D> VolcanoMolten;
+    public static Asset<Texture2D> StaffOfEarthAvalancheStaff;
+    public static Asset<Texture2D> TeslaPaladinsHammer;
+    public static Asset<Texture2D> ToxicHeatray;
+    public static Asset<Texture2D> TrophyExcalibur;
+    public static Asset<Texture2D> ValkyrieDaedalus;
+    public static Asset<Texture2D> VolcanoMolten;
+    public static Asset<Texture2D> WatergunXenopopper;
 
-    // Projectile skins
-    public static Asset<Texture2D> InfluxWaverCyberbladeProjectile; // projectile texture
+    // --- Projectiles for skins --- (sorted alphabetically)
+    public static Asset<Texture2D> InfluxWaverCyberbladeProjectile;
+    public static Asset<Texture2D> StaffOfEarthAvalancheStaffProjectile;
+    public static Asset<Texture2D> WatergunXenopopperProjectile;
 
     // Main menu server list
     public static Asset<Texture2D> Button;

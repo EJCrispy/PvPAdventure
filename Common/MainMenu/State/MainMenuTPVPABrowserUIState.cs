@@ -2,15 +2,16 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using PvPAdventure.Common.MainMenu.Achievements.UI;
+using PvPAdventure.Common.MainMenu.API.Profile;
 using PvPAdventure.Common.MainMenu.Leaderboards;
 using PvPAdventure.Common.MainMenu.MatchHistory.UI;
 using PvPAdventure.Common.MainMenu.PlayerStats;
-using PvPAdventure.Common.MainMenu.Profile;
 using PvPAdventure.Common.MainMenu.ServerList;
 using PvPAdventure.Common.MainMenu.Shop.UI;
 using PvPAdventure.Core.Utilities;
 using ReLogic.Content;
 using System;
+using System.Threading.Tasks;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.UI.Elements;
@@ -38,9 +39,16 @@ internal sealed class MainMenuTPVPABrowserUIState : UIState
         Rebuild();
     }
 
+    public override void OnActivate()
+    {
+        RefreshGemsPanel();
+        _ = RefreshProfileAsync();
+    }
+
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
+        RefreshGemsPanel();
 
         if (KeyboardHelper.Pressed(Keys.Escape))
             GoBackToMainMenu();
@@ -52,6 +60,7 @@ internal sealed class MainMenuTPVPABrowserUIState : UIState
         {
             pendingRebuild = false;
             Rebuild();
+            RefreshGemsPanel();
             return;
         }
 #endif
@@ -106,10 +115,10 @@ internal sealed class MainMenuTPVPABrowserUIState : UIState
         gemsPanel.Height.Set(42f, 0f);
         gemsPanel.Left.Set(0f, 0f);
         gemsPanel.Top.Set(-46f, 0f);
-        gemsPanel.SetContent(MainMenuProfileState.Instance.Gems, MainMenuProfileState.Instance.HasSyncedFromBackend);
+        gemsPanel.RefreshFromProfile();
         gemsPanel.OnMouseOver += (_, _) =>
         {
-            descriptionText.SetText("Gems are awarded for achievements and high placement in TPVPA matches.");
+            descriptionText.SetText("Gems are awarded for achievements and high placement in official TPVPA matches.");
         };
 
         gemsPanel.OnMouseOut += (_, _) =>
@@ -311,6 +320,24 @@ internal sealed class MainMenuTPVPABrowserUIState : UIState
                 panel.BorderColor = border;
             }
         }
+    }
+
+    private void RefreshGemsPanel()
+    {
+        gemsPanel?.RefreshFromProfile();
+    }
+
+    private async Task RefreshProfileAsync()
+    {
+        var result = await ProfileApi.RefreshProfileStateAsync().ConfigureAwait(false);
+
+        Main.QueueMainThreadAction(() =>
+        {
+            RefreshGemsPanel();
+
+            if (!result.IsSuccess)
+                Log.Warn($"[MainMenu] Failed to refresh profile. {result.ErrorMessage}");
+        });
     }
 
     private void GoBackToMainMenu()

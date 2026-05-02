@@ -1,9 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using PvPAdventure.Common.MainMenu.Profile;
 using PvPAdventure.Core.Utilities;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader.UI;
+using Terraria;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
@@ -29,18 +31,30 @@ public class GemsPanel : UIPanel
         this.hasProfile = hasProfile;
     }
 
-    public override void Draw(SpriteBatch sb)
+    public void RefreshFromProfile()
     {
-        base.Draw(sb);
+        MainMenuProfileState profile = MainMenuProfileState.Instance;
+        SetContent(profile.Gems, profile.HasSyncedFromBackend);
+    }
+
+    public override void Update(GameTime gameTime)
+    {
+        base.Update(gameTime);
 
         if (IsMouseHovering)
         {
             string tooltip = hasProfile
-                ? "Gems are awarded for achievements and high placement in TPVPA matches."
+                ? "Gems are awarded for achievements and high placement in official TPVPA matches."
                 : "Could not load your TPVPA profile. Shop items can still be browsed.";
 
+            Main.LocalPlayer.mouseInterface = true;
             UICommon.TooltipMouseText(tooltip);
         }
+    }
+
+    public override void Draw(SpriteBatch sb)
+    {
+        base.Draw(sb);
 
         CalculatedStyle inner = GetInnerDimensions();
         Vector2 pos = new(inner.X - 2f, inner.Y - 2f);

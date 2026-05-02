@@ -1,9 +1,10 @@
 using Microsoft.Xna.Framework;
 using PvPAdventure.Common.MainMenu.API;
-using PvPAdventure.Common.MainMenu.Profile;
+using PvPAdventure.Common.MainMenu.API.Profile;
 using PvPAdventure.Common.MainMenu.Shop.UI;
 using PvPAdventure.Common.MainMenu.State;
 using PvPAdventure.UI;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Terraria;
@@ -34,8 +35,7 @@ public sealed class MatchHistoryUIState : MainMenuPageUIState
     private int selectedIndex = -1;
 
     protected override float MainPanelMinWidth => 850f;
-    //protected override float MainPanelTop => 170f;
-    //protected override float RootMaxWidth => 1100f;
+    protected override float MainPanelMaxWidth => 1100f;
     //protected override float? RootMinWidth => 700f;
     protected override string HeaderLocalizationKey => "Mods.PvPAdventure.MainMenu.MatchHistory";
 
@@ -51,7 +51,7 @@ public sealed class MatchHistoryUIState : MainMenuPageUIState
         gemsPanel.Height.Set(42f, 0f);
         gemsPanel.Left.Set(26f, 0f);
         gemsPanel.Top.Set(-52f, 0f);
-        gemsPanel.SetContent(MainMenuProfileState.Instance.Gems, MainMenuProfileState.Instance.HasSyncedFromBackend);
+        gemsPanel.RefreshFromProfile();
         panel.Append(gemsPanel);
 
         UIElement content = new()
@@ -122,12 +122,15 @@ public sealed class MatchHistoryUIState : MainMenuPageUIState
         matchList.Clear();
         detailsPanel.RemoveAllChildren();
         content = [];
+        gemsPanel.RefreshFromProfile();
+        _ = RefreshProfileAsync();
 
 #if DEBUG
         bool buildExampleContent = false;
         if (buildExampleContent)
         {
             content = MatchHistoryExampleContent.Create();
+            SortContentNewestFirst();
             RebuildMatchUi();
             SetCurrentAsyncState(AsyncProviderState.Completed, $"Loaded {content.Length} example matches.");
             return;
@@ -147,6 +150,7 @@ public sealed class MatchHistoryUIState : MainMenuPageUIState
         {
             if (result.IsSuccess && result.Data != null)
             {
+                result.Data.Sort((a, b) => b.Start.CompareTo(a.Start));
                 content = [.. result.Data];
                 RebuildMatchUi();
                 SetCurrentAsyncState(AsyncProviderState.Completed, $"Loaded {content.Length} matches.");
@@ -156,6 +160,19 @@ public sealed class MatchHistoryUIState : MainMenuPageUIState
             content = [];
             ShowErrorState(FormatErrorMessage("match history", result.ErrorMessage));
             SetCurrentAsyncState(AsyncProviderState.Aborted, FormatErrorMessage("match history", result.ErrorMessage));
+        });
+    }
+
+    private async Task RefreshProfileAsync()
+    {
+        ApiResult<bool> result = await ProfileApi.RefreshProfileStateAsync().ConfigureAwait(false);
+
+        Main.QueueMainThreadAction(() =>
+        {
+            gemsPanel.RefreshFromProfile();
+
+            if (!result.IsSuccess)
+                Log.Warn($"[MatchHistoryUI] Failed to refresh profile. {result.ErrorMessage}");
         });
     }
 
@@ -184,6 +201,11 @@ public sealed class MatchHistoryUIState : MainMenuPageUIState
 
         matchList.Recalculate();
         SelectMatchAndRebuild(0);
+    }
+
+    private void SortContentNewestFirst()
+    {
+        Array.Sort(content, static (a, b) => b.Start.CompareTo(a.Start));
     }
 
     private void ShowLoadingState()
@@ -315,69 +337,10 @@ public sealed class MatchHistoryUIState : MainMenuPageUIState
 
     private static string BuildPlacementLabel(MatchResult result)
     {
-        Team localTeam = Team.None;
-        ulong localSteamId = result.LocalSteamId;
-
-        PlayerKD[] players = result.Players ?? [];
-        for (int i = 0; i < players.Length; i++)
-        {
-            if (players[i].SteamId == localSteamId)
-            {
-                localTeam = players[i].Team;
-                break;
-            }
-        }
-
-        if (localTeam == Team.None)
+        if (!result.TryGetLocalTeamPlacement(out _, out int rank, out bool tied))
             return "No result";
 
-        TeamPoints[] pts = result.TeamPoints ?? [];
-        int localPoints = int.MinValue;
-        List<int> points = [];
-
-        for (int i = 0; i < pts.Length; i++)
-        {
-            Team team = pts[i].Team;
-            if (team == Team.None)
-                continue;
-
-            int p = pts[i].Points;
-            points.Add(p);
-
-            if (team == localTeam)
-                localPoints = p;
-        }
-
-        if (localPoints == int.MinValue || points.Count == 0)
-            return "No result";
-
-        points.Sort((a, b) => b.CompareTo(a));
-
-        List<int> distinct = [];
-        for (int i = 0; i < points.Count; i++)
-        {
-            if (i == 0 || points[i] != points[i - 1])
-                distinct.Add(points[i]);
-        }
-
-        int rank = 1;
-        for (int i = 0; i < distinct.Count; i++)
-        {
-            if (distinct[i] == localPoints)
-            {
-                rank = i + 1;
-                break;
-            }
-        }
-
-        int tieCount = 0;
-        for (int i = 0; i < pts.Length; i++)
-        {
-            if (pts[i].Team != Team.None && pts[i].Points == localPoints)
-                tieCount++;
-        }
-
-        return tieCount > 1 ? $"Tied for {Ordinal(rank)}" : $"Your team placed {Ordinal(rank)}";
+        return tied ? $"Tied for {Ordinal(rank)}" : $"Your team placed {Ordinal(rank)}";
     }
 
     private static string Ordinal(int n)

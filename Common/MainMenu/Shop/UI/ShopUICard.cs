@@ -276,8 +276,8 @@ internal sealed class ShopUICard : UIElement
         Main.LocalPlayer.mouseInterface = true;
 
         string original = Lang.GetItemNameValue(def.ItemType);
-        //string display = $"{def.Name} ({original})";
-        string display = $"{def.DisplayName} \n(Original: {original})";
+        string display = def.DisplayName;
+        string originalLine = C(Color.White, $"(Original: {original})");
         Color badRed = new(148, 39, 39);
 
         if (busy)
@@ -288,23 +288,23 @@ internal sealed class ShopUICard : UIElement
 
         if (equipped)
         {
-            UICommon.TooltipMouseText(C(Color.LimeGreen, $"Unequip {display}"));
+            UICommon.TooltipMouseText(C(Color.LimeGreen, $"Unequip {display}") + "\n" + originalLine);
             return;
         }
 
         if (owned)
         {
-            UICommon.TooltipMouseText(C(Color.LimeGreen, $"Equip {display}"));
+            UICommon.TooltipMouseText(C(Color.LimeGreen, $"Equip {display}") + "\n" + originalLine);
             return;
         }
 
         if (canAfford)
         {
-            UICommon.TooltipMouseText(C(Color.LimeGreen, $"Buy {display}") + "\n" + C(Color.White, $"Price: {def.Price} gems"));
+            UICommon.TooltipMouseText(C(Color.LimeGreen, $"Buy {display}") + "\n" + originalLine + "\n" + C(Color.White, $"Price: {def.Price} gems"));
             return;
         }
 
-        UICommon.TooltipMouseText(C(Color.LimeGreen, $"Buy {display}") + "\n" + C(badRed, "Not enough gems"));
+        UICommon.TooltipMouseText(C(Color.LimeGreen, $"Buy {display}") + "\n" + originalLine + "\n" + C(badRed, "Not enough gems"));
     }
 
     private string C(Color c, string text)
