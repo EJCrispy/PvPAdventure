@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using PvPAdventure.Common.GameTimer;
 using ReLogic.Graphics;
-using SubworldLibrary;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.Map;
@@ -73,8 +72,7 @@ public class SpawnboxMap : ModMapLayer
 
         var gm = ModContent.GetInstance<GameManager>();
         //var am = Main.LocalPlayer.GetModPlayer<SpawnPlayer>();
-        bool canPass = gm.CurrentPhase == GameManager.Phase.Playing && /*am.IsPlayerInSpawnRegion()*/ true
-            || SubworldSystem.AnyActive();
+        bool canPass = gm.CurrentPhase == GameManager.Phase.Playing && /*am.IsPlayerInSpawnRegion()*/ true;
         //&& am.IsPlayerInSpawnRegion();
 
         // now draw using the (possibly clipped) rect

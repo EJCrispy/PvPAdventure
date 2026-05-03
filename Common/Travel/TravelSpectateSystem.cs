@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using PvPAdventure.Common.TeammateSpectator;
 using PvPAdventure.Common.Travel.Portals;
 using PvPAdventure.Common.Travel.UI;
 using PvPAdventure.Content.Portals;

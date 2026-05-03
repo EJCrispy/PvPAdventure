@@ -567,6 +567,11 @@ Mods: {
 					Label: Show Teammates To Spectate
 					Tooltip: ""
 				}
+
+				DrawSpectators: {
+					Label: Draw Spectators
+					Tooltip: ""
+				}
 			}
 
 			OutlinesConfig: {

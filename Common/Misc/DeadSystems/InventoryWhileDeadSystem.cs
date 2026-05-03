@@ -1,8 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
-using PvPAdventure.Common.TeammateSpectator.TeammateOverlay;
-using PvPAdventure.Core.Utilities;
-using Terraria;
+﻿using Terraria;
 using Terraria.GameInput;
 using Terraria.ModLoader;
 

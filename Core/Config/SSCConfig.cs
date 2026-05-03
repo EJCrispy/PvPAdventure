@@ -1,5 +1,4 @@
 ﻿using DragonLens.Core.Systems;
-using PvPAdventure.Common.Arenas;
 using PvPAdventure.Core.Config.ConfigElements.LoadoutItems;
 using System.Collections.Generic;
 using System.ComponentModel;

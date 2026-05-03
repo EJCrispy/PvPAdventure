@@ -138,7 +138,6 @@ public class DLLayout : ModSystem
                .AddTool<DLPointsSetterTool>()
                .AddTool<DLAdminManagerTool>()
                .AddTool<DLOpenConfigTool>()
-               .AddTool<DLArenasAdminTool>()
            );
 
             // right toolbar

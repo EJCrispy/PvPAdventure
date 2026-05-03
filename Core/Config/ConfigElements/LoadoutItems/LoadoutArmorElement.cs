@@ -1,5 +1,4 @@
-﻿using PvPAdventure.Common.Arenas;
-using Terraria.ModLoader.Config;
+﻿using Terraria.ModLoader.Config;
 using Terraria.ModLoader.Config.UI;
 
 namespace PvPAdventure.Core.Config.ConfigElements.LoadoutItems;

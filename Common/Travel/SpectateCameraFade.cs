@@ -6,7 +6,7 @@ using Terraria.GameContent;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace PvPAdventure.Common.TeammateSpectator;
+namespace PvPAdventure.Common.Travel;
 
 /// <summary>
 /// Visual fade-in effect when the camera is moved a large distance in spectate mode. This is to prevent motion sickness/lag from sudden camera jumps.

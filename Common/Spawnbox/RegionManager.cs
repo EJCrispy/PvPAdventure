@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using PvPAdventure.Core.Utilities;
-using SubworldLibrary;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -81,13 +80,8 @@ public class RegionManager : ModSystem
 
         return collisionVelocity;
 
-        bool IsSpawnRegion(Region r) => r.Order == 10; // or a better identifier if you have multiple regions
-
         bool EffectiveCanExit(Region r)
         {
-            // Allow leaving spawn when any subworld is active, even if phase is Waiting.
-            if (IsSpawnRegion(r) && SubworldSystem.AnyActive())
-                return true;
             return r.CanExit;
         }
 

@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework.Input;
-using PvPAdventure.Common.Arenas.UI;
 using PvPAdventure.Common.Bounties;
 using PvPAdventure.Common.Chat;
 using PvPAdventure.Common.Statistics;
@@ -19,7 +18,6 @@ public class Keybinds : ModSystem
     public ModKeybind BountyShop { get; private set; }
     public ModKeybind AllChat { get; private set; }
     public ModKeybind Dash { get; private set; }
-    public ModKeybind ArenasMenu { get; private set; }
     public ModKeybind UsePortalCreator { get; private set; }
 
     #region Portal creator label
@@ -46,7 +44,6 @@ public class Keybinds : ModSystem
         BountyShop = KeybindLoader.RegisterKeybind(Mod, "BountyShop", Keys.P);
         AllChat = KeybindLoader.RegisterKeybind(Mod, "AllChat", Keys.U);
         Dash = KeybindLoader.RegisterKeybind(Mod, "Dash", Keys.F);
-        ArenasMenu = KeybindLoader.RegisterKeybind(Mod, "ArenasMenu", Keys.F1);
         UsePortalCreator = KeybindLoader.RegisterKeybind(Mod, "UsePortalCreator", Keys.G);
     }
 }
@@ -83,15 +80,6 @@ internal class KeybindsPlayer : ModPlayer
         // All Chat
         if (keybinds.AllChat.JustPressed)
             ModContent.GetInstance<TeamChatManager>().OpenAllChat();
-
-        // Arenas UI
-        var arenasConfig = ModContent.GetInstance<ArenasConfig>();
-
-        if (arenasConfig.IsArenasEnabled && keybinds.ArenasMenu.JustPressed)
-        {
-            DebugLog.Chat("Arenas menu keybind pressed");
-            ArenasUISystem.Toggle();
-        }
 
         // UsePortalCreator keybind
         if (keybinds.UsePortalCreator.JustPressed)

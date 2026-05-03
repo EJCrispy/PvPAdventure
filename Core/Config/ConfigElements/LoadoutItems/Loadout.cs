@@ -1,12 +1,11 @@
-﻿using PvPAdventure.Core.Config.ConfigElements.LoadoutItems;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader.Config;
 
-namespace PvPAdventure.Common.Arenas;
+namespace PvPAdventure.Core.Config.ConfigElements.LoadoutItems;
 
 // Class used to define a player's loadout for arenas, a new gamemode developed during 2026-01!
 public class Loadout

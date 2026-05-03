@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using PvPAdventure.Common.GameTimer;
 using PvPAdventure.Core.Utilities;
 using ReLogic.Content;
-using SubworldLibrary;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -91,8 +90,7 @@ public class SpawnBoxWorld : ModSystem
             //var am = Main.LocalPlayer.GetModPlayer<SpawnPlayer>();
             var region = ModContent.GetInstance<RegionManager>().GetRegionIntersecting(Main.LocalPlayer.Hitbox.ToTileRectangle());
             bool inSpawn = region != null;
-            bool canPass = gm.CurrentPhase == GameManager.Phase.Playing && inSpawn
-                || SubworldSystem.AnyActive() && true;
+            bool canPass = gm.CurrentPhase == GameManager.Phase.Playing && inSpawn;
             Color color = Color.Black * (canPass ? 0.5f : 1f);
 
             Texture2D tex = Ass.Spawnbox.Value;

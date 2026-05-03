@@ -3,7 +3,6 @@ using PvPAdventure.Common.MainMenu.MatchHistory;
 using PvPAdventure.Common.Spawnbox;
 using PvPAdventure.Common.Statistics;
 using PvPAdventure.Core.Net;
-using SubworldLibrary;
 using System;
 using System.IO;
 using System.Linq;
@@ -218,10 +217,6 @@ public class GameManager : ModSystem
 
     private static void BroadcastEndGameSummary()
     {
-        // If in subworld, dont broadcast.
-        if (SubworldSystem.AnyActive())
-            return;
-
         // Only the server (or singleplayer) should broadcast.
         if (Main.netMode == NetmodeID.MultiplayerClient)
         {
