@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using PvPAdventure.Common.MainMenu.MatchHistory;
 using PvPAdventure.Common.Spawnbox;
 using PvPAdventure.Common.Statistics;
-using PvPAdventure.Core.Net;
 using System;
 using System.IO;
 using System.Linq;
@@ -346,7 +344,7 @@ public class GameManager : ModSystem
         DateTime startUtc = DateTime.SpecifyKind(gameManager.MatchStartTime.Value, DateTimeKind.Utc);
         DateTime endUtc = DateTime.UtcNow;
 
-        OfficialMatchReporter.PostCompletedMatch(startUtc, endUtc);
+        //OfficialMatchReporter.PostCompletedMatch(startUtc, endUtc);
 
         DebugLog.Chat("Queued completed match for backend reporting");
         DebugLog.Debug("Queued completed match for backend reporting");

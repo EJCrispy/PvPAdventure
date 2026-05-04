@@ -5,7 +5,7 @@ using System.Text;
 using Terraria.Enums;
 using Terraria.ModLoader.IO;
 
-namespace PvPAdventure.Common.MainMenu.MatchHistory;
+namespace PvPAdventure.Common.GameTimer;
 
 /// <summary>
 /// Represents the outcome and details of a completed match, including timing, player statistics, team points, and boss
@@ -233,7 +233,7 @@ public readonly struct MatchResult
             points = new TeamPoints[list.Count];
 
             for (int i = 0; i < list.Count; i++)
-                points[i] = MatchHistory.TeamPoints.FromTag(list[i]);
+                points[i] = Common.GameTimer.TeamPoints.FromTag(list[i]);
         }
 
         TeamBossCompletion[] bosses = [];

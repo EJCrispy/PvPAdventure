@@ -60,10 +60,6 @@ public class PvPAdventure : Mod
                 Common.Visualization.HoldingMap.MapHoldingNetHandler.HandlePacket(reader, whoAmI);
                 break;
 
-            case AdventurePacketIdentifier.Skins:
-                Common.Skins.SkinNetHandler.HandlePacket(reader, whoAmI);
-                break;
-
             case AdventurePacketIdentifier.TravelTeleport:
                 Common.Travel.TravelTeleportNetHandler.HandlePacket(reader, whoAmI);
                 break;
