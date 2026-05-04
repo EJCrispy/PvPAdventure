@@ -1,5 +1,5 @@
-﻿using PvPAdventure.Common.SSC;
-using PvPAdventure.Common.Statistics;
+﻿using PvPAdventure.Common.Statistics;
+using PvPAdventure.Core.Compat;
 using PvPAdventure.Core.Net;
 using System.IO;
 using Terraria;
@@ -44,7 +44,8 @@ public static class GameTimerNetHandler
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                         return;
 
-                    ModContent.GetInstance<SSCSaveSystem>()?.SendPacketToSavePlayerFile();
+                    //ModContent.GetInstance<SSCSaveSystem>()?.SendPacketToSavePlayerFile();
+                    ErkySSCCompat.TrySendErkySSCSave();
                     return;
                 }
 

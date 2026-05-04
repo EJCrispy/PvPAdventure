@@ -56,21 +56,9 @@ public class PvPAdventure : Mod
                 Common.GameTimer.GameTimerNetHandler.HandlePacket(reader, whoAmI);
                 break;
 
-            case AdventurePacketIdentifier.SSC:
-                Common.SSC.SSC.HandlePacket(reader, whoAmI);
-                break;
-
-            case AdventurePacketIdentifier.ClientModCheck:
-                Common.Security.ClientModHandler.HandlePacket(reader, whoAmI);
-                break;
-
             case AdventurePacketIdentifier.HoldingMap:
                 Common.Visualization.HoldingMap.MapHoldingNetHandler.HandlePacket(reader, whoAmI);
                 break;
-
-            //case AdventurePacketIdentifier.ArenasAdmin:
-            //    Common.AdminTools.Tools.ArenasTool.ArenasAdminNetHandler.HandlePacket(reader, whoAmI);
-            //    break;
 
             case AdventurePacketIdentifier.Skins:
                 Common.Skins.SkinNetHandler.HandlePacket(reader, whoAmI);

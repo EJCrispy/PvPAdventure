@@ -1,9 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using PvPAdventure.Common.SSC;
-using PvPAdventure.Core.Config;
 using Terraria;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace PvPAdventure.Core.Utilities;
 

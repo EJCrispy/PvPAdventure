@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Metadata;
 using Terraria;
@@ -102,6 +103,7 @@ internal static class DebugDrawer
             $"Hardmode: {Main.hardMode} | Expert: {Main.expertMode} | Master: {Main.masterMode}",
             $"Halloween: {Main.halloween}",
             $"MetadataUpdater.IsSupported: {MetadataUpdater.IsSupported}",
+            $"Debugger.IsAttached: {Debugger.IsAttached}",
         ];
 
         // Calculate width of the longest line to right-align the column

@@ -872,11 +872,6 @@ Mods: {
 					Tooltip: ""
 				}
 
-				AutoAdmins: {
-					Label: Auto Admins
-					Tooltip: ""
-				}
-
 				TeleportCooldownSeconds: {
 					Label: Teleport Cooldown Seconds
 					Tooltip: The time after a teleport has been completed before a new one can be tried again
@@ -1823,81 +1818,6 @@ Mods: {
 				}
 			}
 
-			AllowMode: {
-				Tooltip: ""
-
-				Always: {
-					Label: Always
-					Tooltip: Always allow players to change teams
-				}
-
-				BeforeGameStart: {
-					Label: Before Game Start
-					Tooltip: Only allow players to change teams before the game has started
-				}
-
-				Never: {
-					Label: Never
-					Tooltip: Players are not allowed to change teams
-				}
-			}
-
-			SpawnSelectorPosition: {
-				Tooltip: ""
-
-				Top: {
-					Label: Top
-					Tooltip: ""
-				}
-
-				Bottom: {
-					Label: Bottom
-					Tooltip: ""
-				}
-			}
-
-			ClientModsConfig: {
-				Tooltip: ""
-
-				AllowAnyClientMods: {
-					Label: Allow Any Client Mods
-					Tooltip: ""
-				}
-
-				AllowedClientMods: {
-					Label: Allowed Client Mods
-					Tooltip: Enter the mods internal name
-				}
-			}
-
-			WhitelistPlayersConfig: {
-				Tooltip: ""
-
-				AllowAnyPlayerToJoin: {
-					Label: Allow Any Player To Join
-					Tooltip: ""
-				}
-
-				AllowedPlayerSteamIds: {
-					Label: Allowed Player Steam Ids
-					Tooltip: ""
-				}
-			}
-
-			AutoAdminsConfig: {
-				Tooltip: ""
-
-				Enabled: {
-					Label: Enabled
-					Tooltip: ""
-				}
-
-				SteamIds: {
-					Label: Steam Ids
-					Tooltip: ""
-				}
-			}
-
 			KnockbackConfig: {
 				Tooltip: ""
 
@@ -1991,6 +1911,25 @@ Mods: {
 				Big: {
 					Label: Big
 					Tooltip: "1.15"
+				}
+			}
+
+			AllowMode: {
+				Tooltip: ""
+
+				Always: {
+					Label: Always
+					Tooltip: ""
+				}
+
+				BeforeGameStart: {
+					Label: Before Game Start
+					Tooltip: ""
+				}
+
+				Never: {
+					Label: Never
+					Tooltip: ""
 				}
 			}
 		}

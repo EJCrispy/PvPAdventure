@@ -140,14 +140,10 @@ public class ServerConfig : ModConfig
     [DefaultValue(30)]
     public int PortalCreationOffset { get; set; }
 
-    [BackgroundColor(30, 150, 150)]
-    [Range(0, 60)]
-    [DefaultValue(5)]
-    public int TeleportCooldownSeconds { get; set; }
-
-    [DefaultValue(true)]
-    [BackgroundColor(30, 150, 150)]
-    public bool IsTeammateSpectatingEnabled { get; set; }
+    //[BackgroundColor(30, 150, 150)]
+    //[Range(0, 60)]
+    //[DefaultValue(5)]
+    //public int TeleportCooldownSeconds { get; set; }
 
     [Header("Gameplay")]
 
@@ -168,19 +164,6 @@ public class ServerConfig : ModConfig
     [DefaultValue(AllowMode.BeforeGameStart)]
     [JsonConverter(typeof(StringEnumConverter))]
     public AllowMode AllowPlayersToChangeTeam { get; set; } = AllowMode.BeforeGameStart;
-
-    [Header("Security")]
-    [BackgroundColor(150, 70, 20)]
-    [Expand(false, false)]
-    public ClientModsConfig ClientMods { get; set; } = new();
-
-    [BackgroundColor(150, 70, 20)]
-    [Expand(false, false)]
-    public WhitelistPlayersConfig WhitelistPlayers { get; set; } = new();
-
-    [BackgroundColor(150, 70, 20)]
-    [Expand(false, false)]
-    public AutoAdminsConfig AutoAdmins { get; set; } = new();
 
     [Header("WorldGen")]
     [BackgroundColor(90, 70, 40)]

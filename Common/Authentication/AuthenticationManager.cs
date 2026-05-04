@@ -30,17 +30,6 @@ public class AuthenticationManager : ModSystem
         {
             ShouldAttemptAuthentication = (whoAmI, id) =>
             {
-                var config = ModContent.GetInstance<ServerConfig>();
-
-                if (!config.WhitelistPlayers.AllowAnyPlayerToJoin &&
-                    !config.WhitelistPlayers.AllowedPlayerSteamIds.Contains(id.ToString()))
-                {
-                    DebugLog.Debug($"{id} not whitelisted, booting {whoAmI} without attempting authentication");
-                    NetMessage.BootPlayer(whoAmI,
-                        NetworkText.FromKey("Mods.PvPAdventure.Authentication.NotWhitelisted"));
-                    return false;
-                }
-
                 return true;
             };
 

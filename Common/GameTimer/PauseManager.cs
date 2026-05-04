@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.Xna.Framework;
-using PvPAdventure.Common.SSC;
 using Terraria;
 using Terraria.Chat;
 using Terraria.GameContent;
