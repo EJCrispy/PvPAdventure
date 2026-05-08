@@ -577,6 +577,11 @@ Mods: {
 					Label: Team Item Outlines
 					Tooltip: ""
 				}
+
+				ProjectileOutlines: {
+					Label: Projectile Outlines
+					Tooltip: ""
+				}
 			}
 
 			OutlinesConfig: {

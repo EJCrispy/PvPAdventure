@@ -42,6 +42,10 @@ public class ClientConfig : ModConfig
     public bool TeamItemOutlines = true;
 
     [BackgroundColor(50, 70, 120)]
+    [DefaultValue(true)]
+    public bool ProjectileOutlines = true;
+
+    [BackgroundColor(50, 70, 120)]
     [DefaultValue(true)] 
     public bool LootOutlines = true;
 
