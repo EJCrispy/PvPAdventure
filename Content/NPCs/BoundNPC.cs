@@ -1,8 +1,10 @@
 ﻿using PvPAdventure.Core.Config;
+using PvPAdventure.Common.NPCs;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Team = Terraria.Enums.Team;
 
 namespace PvPAdventure.Content.NPCs;
 
@@ -65,6 +67,20 @@ public abstract class BoundNPC : ModNPC
 
     protected virtual void Transform(int whoAmI)
     {
+        Team team = GetPlayerTeam(whoAmI);
+        NPC.GetGlobalNPC<TeamOwnedTownNPC>().SetOwnerTeam(NPC, team, sync: false);
+
         NPC.AI_000_TransformBoundNPC(whoAmI, TransformInto);
+
+        NPC.GetGlobalNPC<TeamOwnedTownNPC>().SetOwnerTeam(NPC, team);
+    }
+
+    private static Team GetPlayerTeam(int whoAmI)
+    {
+        if (whoAmI < 0 || whoAmI >= Main.maxPlayers)
+            return Team.None;
+
+        Player player = Main.player[whoAmI];
+        return player != null && player.active ? (Team)player.team : Team.None;
     }
 }

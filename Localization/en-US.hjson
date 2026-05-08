@@ -572,6 +572,11 @@ Mods: {
 					Label: Draw Spectators
 					Tooltip: ""
 				}
+
+				TeamItemOutlines: {
+					Label: Team Item Outlines
+					Tooltip: ""
+				}
 			}
 
 			OutlinesConfig: {
@@ -847,11 +852,6 @@ Mods: {
 					Tooltip: Shows the npc has Awoken! text
 				}
 
-				AdventureMirrorRecallSeconds: {
-					Label: "[i:PvPAdventure/AdventureMirror] Adventure Mirror Use Time"
-					Tooltip: The number of seconds the Adventure Mirror takes before teleporting
-				}
-
 				AllowPlayersToChangeTeam: {
 					Label: "[i:PvPAdventure/TeamConfigItem] Allow Players To Change Teams"
 					Tooltip: Shows the UI that lets players pick a team
@@ -859,16 +859,6 @@ Mods: {
 
 				Immunity: {
 					Label: Immunity
-					Tooltip: ""
-				}
-
-				ClientMods: {
-					Label: Client Mods
-					Tooltip: ""
-				}
-
-				WhitelistPlayers: {
-					Label: Whitelist Players
 					Tooltip: ""
 				}
 
@@ -919,11 +909,6 @@ Mods: {
 
 				IsRandomTeleportEnabled: {
 					Label: Is Random Teleport Option Enabled
-					Tooltip: ""
-				}
-
-				IsTeammateSpectatingEnabled: {
-					Label: Is Teammate Spectating Enabled
 					Tooltip: ""
 				}
 			}
@@ -1391,260 +1376,6 @@ Mods: {
 
 			RespawnConfig.Tooltip: ""
 
-			Loadout: {
-				Tooltip: ""
-
-				Name: {
-					Label: Name
-					Tooltip: ""
-				}
-
-				Head: {
-					Label: Head
-					Tooltip: ""
-				}
-
-				Body: {
-					Label: Body
-					Tooltip: ""
-				}
-
-				Legs: {
-					Label: Legs
-					Tooltip: ""
-				}
-
-				Accessories: {
-					Label: Accessories
-					Tooltip: ""
-				}
-
-				Hotbar: {
-					Label: Hotbar
-					Tooltip: ""
-				}
-
-				GrapplingHook: {
-					Label: Grappling Hook
-					Tooltip: ""
-				}
-
-				Inventory: {
-					Label: Inventory
-					Tooltip: ""
-				}
-
-				ArmorAndAccessories: {
-					Label: Armor And Accessories
-					Tooltip: ""
-				}
-
-				Armor: {
-					Label: Armor
-					Tooltip: ""
-				}
-
-				Mount: {
-					Label: Mount
-					Tooltip: ""
-				}
-
-				Equipment: {
-					Label: Equipment
-					Tooltip: ""
-				}
-			}
-
-			LoadoutItem: {
-				Tooltip: ""
-
-				Type: {
-					Label: Type
-					Tooltip: ""
-				}
-
-				Stack: {
-					Label: Stack
-					Tooltip: ""
-				}
-
-				Item: {
-					Tooltip: ""
-					Label: Item
-				}
-			}
-
-			ArenasConfig: {
-				DisplayName: Arenas Config
-
-				Headers: {
-					Arenas: "[i:PvPAdventure/ArenasConfigItem] Arenas"
-					Loadouts: Loadouts
-					Respawn: Respawn Settings
-				}
-
-				IsArenasEnabled: {
-					Label: Enable Arenas
-					Tooltip: Allows players to open the arenas join UI with their keybind.
-				}
-
-				ArenaLoadouts: {
-					Label: Loadouts
-					Tooltip: ""
-				}
-
-				RevealMap: {
-					Label: "[i:TrifoldMap] Reveal Map"
-					Tooltip: Fully reveals the entire arenas map for all players upon joining the subworld
-				}
-
-				MaxHealth: {
-					Label: "[i:LifeCrystal] Max Health"
-					Tooltip: ""
-				}
-
-				MaxMana: {
-					Label: "[i:ManaCrystal] Max Mana"
-					Tooltip: ""
-				}
-
-				EnableCustomRespawnTimer: {
-					Label: Enable Custom Respawn Timer
-					Tooltip: ""
-				}
-
-				RespawnTimeSeconds: {
-					Label: Respawn Time Seconds
-					Tooltip: ""
-				}
-			}
-
-			SSCConfig: {
-				DisplayName: SSC Config
-
-				Headers: {
-					SSC: "[i:PvPAdventure/ServerConfigItem] Server Sided Characters"
-					StartingItems: Starting Items
-				}
-
-				StartItems: {
-					Label: Starting Items
-					Tooltip: ""
-				}
-
-				StartLife: {
-					Label: "[i:LifeCrystal] Starting Health"
-					Tooltip: The starting max health of a new character
-				}
-
-				StartMana: {
-					Label: "[i:ManaCrystal] Starting Mana"
-					Tooltip: The starting max mana of a new character
-				}
-
-				IsSSCEnabled: {
-					Label: Enable SSC
-					Tooltip:
-						'''
-						Enables server sided characters to prevent local players from joining.
-						Player files are located on the server: 
-						tModLoader/PvPAdventureSSC/<WorldName>/<SteamID>
-						'''
-				}
-
-				SSCPlayerNames: {
-					Label: SSC Player Names
-					Tooltip: Set the names of players who join
-				}
-			}
-
-			SSCPlayerNameType: {
-				Tooltip: ""
-
-				Default: {
-					Label: Vanilla
-					Tooltip: Vanilla character name
-				}
-
-				Steam: {
-					Label: Steam
-					Tooltip: Steam profile names
-				}
-
-				Discord: {
-					Label: Discord
-					Tooltip: Discord display names
-				}
-
-				Numbered: {
-					Label: Numbered
-					Tooltip: Numbered player names (Player1, Player2...) [unstable]
-				}
-			}
-
-			ArmorAndAccessories: {
-				Tooltip: ""
-
-				Head: {
-					Label: Head
-					Tooltip: ""
-				}
-
-				Body: {
-					Label: Body
-					Tooltip: ""
-				}
-
-				Legs: {
-					Label: Legs
-					Tooltip: ""
-				}
-
-				Accessory1: {
-					Tooltip: ""
-					Label: "1"
-				}
-
-				Accessory2: {
-					Tooltip: ""
-					Label: "2"
-				}
-
-				Accessory3: {
-					Tooltip: ""
-					Label: "3"
-				}
-
-				Accessory4: {
-					Tooltip: ""
-					Label: "4"
-				}
-
-				Accessory5: {
-					Tooltip: ""
-					Label: "5"
-				}
-			}
-
-			Armor: {
-				Tooltip: ""
-
-				Head: {
-					Label: Head
-					Tooltip: ""
-				}
-
-				Body: {
-					Label: Body
-					Tooltip: ""
-				}
-
-				Legs: {
-					Label: Legs
-					Tooltip: ""
-				}
-			}
-
 			ItemStackValue: {
 				Tooltip: ""
 
@@ -1653,56 +1384,6 @@ Mods: {
 					Tooltip: ""
 				}
 			}
-
-			Accessories: {
-				Tooltip: ""
-
-				Accessory1: {
-					Label: Accessory1
-					Tooltip: ""
-				}
-
-				Accessory2: {
-					Label: Accessory2
-					Tooltip: ""
-				}
-
-				Accessory3: {
-					Label: Accessory3
-					Tooltip: ""
-				}
-
-				Accessory4: {
-					Label: Accessory4
-					Tooltip: ""
-				}
-
-				Accessory5: {
-					Label: Accessory5
-					Tooltip: ""
-				}
-			}
-
-			Equipment: {
-				Tooltip: ""
-
-				GrapplingHook: {
-					Label: Grappling Hook
-					Tooltip: ""
-				}
-
-				Mount: {
-					Label: Mount
-					Tooltip: ""
-				}
-			}
-
-			ItemHeadDefinition.Tooltip: ""
-			ItemBodyDefinition.Tooltip: ""
-			ItemLegsDefinition.Tooltip: ""
-			ItemAccessoryDefinition.Tooltip: ""
-			ItemGrapplingHookDefinition.Tooltip: ""
-			ItemMountDefinition.Tooltip: ""
 
 			ProjectileImmunityGroup: {
 				Tooltip: ""
@@ -1935,9 +1616,7 @@ Mods: {
 		}
 
 		Tiles.LockedLihzahrdChest.MapEntry: Mods.PvPAdventure.Tiles.LockedLihzahrdChest.MapEntry
-		Player.CannotRecall: Cannot recall!
 		DashKeybind.NoDashItem: you have no dash item!
-		Subworlds.ArenasSubworld.DisplayName: Arenas 1
 
 		PortalCreator: {
 			TravelDisabledInConfig: travel is disabled in config!
@@ -1989,23 +1668,6 @@ Mods: {
 			True: "[c/FF0000:The game has been paused.]"
 			False: "[c/00FF00:The game has been resumed.]"
 			Paused: PAUSED
-		}
-
-		MainMenu: {
-			TPVPA: TPVPA
-			TerrariaPvPAdventure: Terraria PvP Adventure
-			ServerList: TPVPA Server List
-			MatchHistory: TPVPA Match History
-			Achievements: TPVPA Achievements
-			Stats: TPVPA Stats
-			Shop: TPVPA Shop
-			Leaderboards: TPVPA Leaderboards
-			ServerListDescription: Join casual or competitive TPVPA servers.
-			MatchHistoryDescription: Review past matches and results.
-			AchievementsDescription: Track challenges and unlocks.
-			StatsDescription: View player K/D and W/L ratio.
-			ShopDescription: Spend TPVPA gems on rewards.
-			LeaderboardsDescription: Rise to the top of the ranks!
 		}
 
 		Sandstorm: "[c/FFC864:Desert winds are picking up...]"

@@ -434,24 +434,6 @@ public class ServerConfig : ModConfig
         public List<string> AllowedClientMods { get; set; } = [];
     }
 
-    public class WhitelistPlayersConfig
-    {
-        [DefaultValue(true)]
-        public bool AllowAnyPlayerToJoin { get; set; }
-
-        [Expand(false, false)]
-        public List<string> AllowedPlayerSteamIds { get; set; } = [];
-    }
-
-    public class AutoAdminsConfig
-    {
-        [DefaultValue(false)]
-        public bool Enabled { get; set; }
-
-        [Expand(false, false)]
-        public List<string> SteamIds { get; set; } = [];
-    }
-
     public class WorldGenerationConfig
     {
         [DefaultValue(2)] public int LifeFruitChanceDenominator { get; set; } = 2;
