@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using PvPAdventure.Common.Loot;
 using PvPAdventure.Common.World.Outlines.ItemOutlines;
+using PvPAdventure.Core.Utilities;
 using System;
 using Terraria;
 using Terraria.Enums;
@@ -45,7 +46,7 @@ internal sealed class BossDropTeamMouseText : ModSystem
             if (_lastIdx != idx)
             {
                 _lastIdx = idx;
-                DebugLog.Chat($"{item.Name}->{team.Value}");
+                Log.Chat($"{item.Name}->{team.Value}");
             }
         }
 

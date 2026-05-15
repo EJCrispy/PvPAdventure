@@ -198,7 +198,7 @@ public class ClientConfig : ModConfig
     public override void OnChanged()
     {
         base.OnChanged();
-        DebugLog.Chat("Client config changed");
+        Log.Chat("Client config changed");
 
         // Rebuild travel UI
         var travelUISystem = ModContent.GetInstance<TravelUISystem>();

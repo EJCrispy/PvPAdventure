@@ -1,5 +1,6 @@
 ﻿using PvPAdventure.Content.Portals;
 using PvPAdventure.Core.Net;
+using PvPAdventure.Core.Utilities;
 using System.IO;
 using Terraria;
 using Terraria.ID;
@@ -25,7 +26,7 @@ public static class PortalNetHandler
                 break;
 
             default:
-                DebugLog.Warn($"[Portal] Unknown packet type={(byte)type}");
+                Log.Warn($"[Portal] Unknown packet type={(byte)type}");
                 break;
         }
     }
@@ -59,7 +60,7 @@ public static class PortalNetHandler
             if (!PortalCreatorItem.CanCreatePortal(player, false))
                 return;
 
-            DebugLog.Chat("Portal creation request received");
+            Log.Chat("Portal creation request received");
             PortalSystem.StartPortalCreation(player);
             SendPortalCreatorUse(playerId, slot, whoAmI);
             return;

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using MonoMod.RuntimeDetour;
 using PvPAdventure.Core.Config;
+using PvPAdventure.Core.Utilities;
 using System.Reflection;
 using Terraria.ModLoader;
 
@@ -14,7 +15,7 @@ internal sealed class DisableSocialAccessoriesEyeToggle : ModSystem
 
         if (method == null)
         {
-            DebugLog.Warn("AccessorySlotLoader.DrawVisibility not found. Eye toggle hook not installed.");
+            Log.Warn("AccessorySlotLoader.DrawVisibility not found. Eye toggle hook not installed.");
             return;
         }
 

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using PvPAdventure.Common.Travel.Portals;
 using PvPAdventure.Core.Config;
+using PvPAdventure.Core.Utilities;
 using System;
 using System.IO;
 using Terraria;
@@ -164,7 +165,7 @@ public sealed class PortalCreationProjectile : ModProjectile
         int owner = Projectile.owner;
 
         Projectile.Kill();
-        DebugLog.Chat("Portal temp creation projectile killed");
+        Log.Chat("Portal temp creation projectile killed");
 
         if (Main.netMode == NetmodeID.Server)
             NetMessage.SendData(MessageID.KillProjectile, -1, -1, null, identity, owner);

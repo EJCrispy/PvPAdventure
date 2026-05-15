@@ -3,6 +3,7 @@ using PvPAdventure.Common.Travel.Portals;
 using PvPAdventure.Content.Portals;
 using PvPAdventure.Core.Config;
 using PvPAdventure.Core.Net;
+using PvPAdventure.Core.Utilities;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -35,7 +36,7 @@ public static class TravelTeleportNetHandler
                 break;
 
             default:
-                DebugLog.Warn($"[TravelTeleport] Unknown packet type={(byte)type}");
+                Log.Warn($"[TravelTeleport] Unknown packet type={(byte)type}");
                 break;
         }
     }

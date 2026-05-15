@@ -3,7 +3,6 @@ using MonoMod.RuntimeDetour;
 using PvPAdventure.Content.Items;
 using PvPAdventure.Content.NPCs;
 using PvPAdventure.Content.Portals;
-using PvPAdventure.Core.Debug;
 using PvPAdventure.Core.Utilities;
 using System;
 using System.Linq;
@@ -47,7 +46,7 @@ public class PortalHooks : ModSystem
         if (getter != null)
             ignoreMouseHook = new Hook(getter, OverrideIgnoreMouseInterface);
         else
-            DebugLog.Error("PlayerInput.get_IgnoreMouseInterface not found!");
+            Log.Error("PlayerInput.get_IgnoreMouseInterface not found!");
     }
 
     public override void Unload()

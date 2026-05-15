@@ -4,6 +4,7 @@ using PvPAdventure.Common.World.Outlines.ItemOutlines;
 using PvPAdventure.Common.World.Outlines.TileOutlines;
 using PvPAdventure.Core.Config;
 using PvPAdventure.Core.Net;
+using PvPAdventure.Core.Utilities;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -151,7 +152,7 @@ internal sealed class TeamItemTile : GlobalTile
     {
         if (TeamItemSystem.IsTeamItem(item))
         {
-            DebugLog.Chat("Team item placed: " + item.Name + ", team: " + (Terraria.Enums.Team)Main.LocalPlayer.team);
+            Log.Chat("Team item placed: " + item.Name + ", team: " + (Terraria.Enums.Team)Main.LocalPlayer.team);
             ModContent.GetInstance<TeamItemSystem>().Claim(TeamItemSystem.Origin(i, j), (TTeam)Main.LocalPlayer.team);
         }
     }

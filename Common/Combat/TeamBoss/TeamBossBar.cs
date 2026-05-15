@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using PvPAdventure.Core.Debug;
 using PvPAdventure.Core.Utilities;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,8 +35,8 @@ public sealed class TeamBossBar : GlobalBossBar
             // Debug print once every 20 seconds
             if (Main.GameUpdateCount % (60*20) == 0)
             {
-                DebugLog.Chat($"Boss ({npc.TypeName}) {team} damage: {npc.lifeMax - life}");
-                DebugLog.Debug($"Boss ({npc.TypeName}) {team} damage: {npc.lifeMax - life}");
+                Log.Chat($"Boss ({npc.TypeName}) {team} damage: {npc.lifeMax - life}");
+                Log.Debug($"Boss ({npc.TypeName}) {team} damage: {npc.lifeMax - life}");
             }
 
             // Shouldn't be possible, but be sure not to draw this.

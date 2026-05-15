@@ -3,6 +3,7 @@ using PvPAdventure.Common.Combat;
 using PvPAdventure.Common.GameTimer;
 using PvPAdventure.Common.Travel.Portals;
 using PvPAdventure.Content.Portals;
+using PvPAdventure.Core.Utilities;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -52,7 +53,7 @@ internal class TravelPlayer : ModPlayer
     {
         if (info.PvP)
         {
-            DebugLog.Chat("PvP damage while creating portal, cancelling portal use");
+            Log.Chat("PvP damage while creating portal, cancelling portal use");
             return true;
         }
 
@@ -62,7 +63,7 @@ internal class TravelPlayer : ModPlayer
             && CombatManager.IsBossProjectile(projectile);
 
         if (isBossProjectile)
-            DebugLog.Chat("Boss projectile while creating portal, cancelling portal use");
+            Log.Chat("Boss projectile while creating portal, cancelling portal use");
 
         return isBossProjectile;
     }

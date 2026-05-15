@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using PvPAdventure.Common.World.Outlines.ItemOutlines;
+using PvPAdventure.Core.Utilities;
 using System;
 using System.Reflection;
 using Terraria;
@@ -249,7 +250,7 @@ internal sealed class BossDropPerTeamSystem : ModSystem
         Team team = GetAwardTeam(npc);
         item.GetGlobalItem<BossDropItem>()._team = team;
 
-        DebugLog.Chat($"{Lang.GetItemNameValue(item.type)}->{team}");
+        Log.Chat($"{Lang.GetItemNameValue(item.type)}->{team}");
         NetMessage.SendData(MessageID.SyncItem, number: idx);
 
         return idx;
@@ -295,7 +296,7 @@ internal sealed class BossDropPerTeamSystem : ModSystem
         Main.item[idx].active = false;
         npc.value = 0f;
 
-        DebugLog.Chat($"{Lang.GetItemNameValue(itemId)}->{team}");
+        Log.Chat($"{Lang.GetItemNameValue(itemId)}->{team}");
     }
 }
 

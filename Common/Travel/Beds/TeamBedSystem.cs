@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using PvPAdventure.Core.Utilities;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -120,7 +121,7 @@ internal sealed class TeamBedSystem : ModSystem
 
         if (hadOwner && !sameOwner && !sameTeamOwner)
         {
-            DebugLog.Chat($"New bed claim pos=({origin.X},{origin.Y}) previousOwner={Main.player[previousOwnerId].name} newOwner={player.name}");
+            Log.Chat($"New bed claim pos=({origin.X},{origin.Y}) previousOwner={Main.player[previousOwnerId].name} newOwner={player.name}");
             DestroyPreviousOwnerBed(origin, previousOwnerId);
         }
 
@@ -150,7 +151,7 @@ internal sealed class TeamBedSystem : ModSystem
         if (!PlayerOwnsOrigin(owner, origin))
             return;
 
-        DebugLog.Chat($"Destroy previous owner bed pos=({origin.X},{origin.Y}) ownerId={ownerId}");
+        Log.Chat($"Destroy previous owner bed pos=({origin.X},{origin.Y}) ownerId={ownerId}");
 
         owner.SpawnX = -1;
         owner.SpawnY = -1;

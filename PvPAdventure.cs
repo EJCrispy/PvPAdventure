@@ -1,4 +1,5 @@
 using PvPAdventure.Core.Net;
+using PvPAdventure.Core.Utilities;
 using System.IO;
 using Terraria.ModLoader;
 
@@ -69,7 +70,7 @@ public class PvPAdventure : Mod
                 break;
 
             default:
-                DebugLog.Warn($"[Packet] Unknown packet id: {(byte)id} ({id})");
+                Log.Warn($"[Packet] Unknown packet id: {(byte)id} ({id})");
                 break;
         }
 

@@ -1,6 +1,7 @@
 using Newtonsoft.Json.Converters;
 using PvPAdventure.Common.Combat;
 using PvPAdventure.Core.Config.ConfigElements;
+using PvPAdventure.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -628,7 +629,7 @@ public class ServerConfig : ModConfig
 
     public override void HandleAcceptClientChangesReply(bool success, int player, NetworkText message)
     {
-        DebugLog.Chat("Server accepted changes!");
+        Log.Chat("Server accepted changes!");
         base.HandleAcceptClientChangesReply(success, player, message);
     }
     public override void OnChanged()

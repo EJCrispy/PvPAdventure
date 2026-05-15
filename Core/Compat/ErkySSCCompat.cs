@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PvPAdventure.Core.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -19,7 +20,7 @@ public static class ErkySSCCompat
 
         if (!ModLoader.TryGetMod("ErkySSC", out Mod erkySsc))
         {
-            DebugLog.Warn("[PvPAdventure] Could not request ErkySSC save because ErkySSC is not loaded.");
+            Log.Warn("[PvPAdventure] Could not request ErkySSC save because ErkySSC is not loaded.");
             return;
         }
 
@@ -27,7 +28,7 @@ public static class ErkySSCCompat
 
         if (saveSystemType == null)
         {
-            DebugLog.Warn("[PvPAdventure] Could not find ErkySSC.Common.SSC.SSCSaveSystem.");
+            Log.Warn("[PvPAdventure] Could not find ErkySSC.Common.SSC.SSCSaveSystem.");
             return;
         }
 
@@ -36,7 +37,7 @@ public static class ErkySSCCompat
 
         if (saveSystem == null)
         {
-            DebugLog.Warn("[PvPAdventure] Could not get SSCSaveSystem instance.");
+            Log.Warn("[PvPAdventure] Could not get SSCSaveSystem instance.");
             return;
         }
 
@@ -44,7 +45,7 @@ public static class ErkySSCCompat
 
         if (sendMethod == null)
         {
-            DebugLog.Warn("[PvPAdventure] Could not find SSCSaveSystem.SendPacketToSavePlayerFile().");
+            Log.Warn("[PvPAdventure] Could not find SSCSaveSystem.SendPacketToSavePlayerFile().");
             return;
         }
 

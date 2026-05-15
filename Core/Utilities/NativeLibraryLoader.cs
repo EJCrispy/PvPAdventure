@@ -50,7 +50,7 @@ public class NativeLibraryLoader : ModSystem
                        }))
                     nativeLibraryModStream.CopyTo(nativeLibraryDiskStream);
 
-                DebugLog.Debug($"Found native library {name} and wrote to filesystem {nativeLibraryPathOnDisk}");
+                Log.Debug($"Found native library {name} and wrote to filesystem {nativeLibraryPathOnDisk}");
 
                 return NativeLibrary.Load(nativeLibraryPathOnDisk);
             })

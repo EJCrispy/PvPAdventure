@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using PvPAdventure.Content.Portals;
+using PvPAdventure.Core.Utilities;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -61,7 +62,7 @@ public static class PortalSystem
             return false;
 
         portal.Initialize(owner, worldPos);
-        DebugLog.Chat($"Portal created at {(int)worldPos.X}, {(int)worldPos.Y}");
+        Log.Chat($"Portal created at {(int)worldPos.X}, {(int)worldPos.Y}");
         TeleportChat.AnnouncePortalOpened(owner);
 
         if (Main.netMode == NetmodeID.Server)

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using PvPAdventure.Common.Statistics;
 using PvPAdventure.Core.Config;
 using PvPAdventure.Core.Net;
+using PvPAdventure.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -49,7 +50,7 @@ public class BountyManager : ModSystem
 
         if (team == Team.None)
         {
-            DebugLog.Chat($"{debugKey}: you are Team.None. Join a team first.");
+            Log.Chat($"{debugKey}: you are Team.None. Join a team first.");
             return;
         }
 
@@ -67,7 +68,7 @@ public class BountyManager : ModSystem
 
         if (eligibleBounties.Count == 0)
         {
-            DebugLog.Chat($"{debugKey}: no eligible bounties (check conditions/config).");
+            Log.Chat($"{debugKey}: no eligible bounties (check conditions/config).");
             return;
         }
 
@@ -78,7 +79,7 @@ public class BountyManager : ModSystem
         UiBountyShop?.Invalidate();
         ModContent.GetInstance<PointsManager>().UiScoreboard.Invalidate();
 
-        DebugLog.Chat($"+500 bounty shards to {team}. Shard count now: {pages.Count}");
+        Log.Chat($"+500 bounty shards to {team}. Shard count now: {pages.Count}");
     }
 
     private static IList<Item[]> CloneBounties(IList<Item[]> src)

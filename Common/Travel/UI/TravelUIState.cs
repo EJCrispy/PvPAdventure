@@ -45,7 +45,7 @@ internal class TravelUIState : UIState
     public void ForceRebuildNextUpdate()
     {
         lastTargetHash = int.MinValue;
-        DebugLog.Chat("Travel UI hash changed, force rebuilding");
+        Log.Chat("Travel UI hash changed, force rebuilding");
     }
 
     public void RebuildIfNeeded()

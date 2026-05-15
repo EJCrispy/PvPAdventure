@@ -2,6 +2,7 @@
 using PvPAdventure.Common.Teams;
 using PvPAdventure.Core.Config;
 using PvPAdventure.Core.Net;
+using PvPAdventure.Core.Utilities;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -53,8 +54,8 @@ internal class StatisticsPlayer : ModPlayer
         {
             if (Kills < 0 || Kills > 1_000_000 || Deaths < 0 || Deaths > 1_000_000)
             {
-                DebugLog.Warn($"Discarding bogus stats: kills={Kills}, deaths={Deaths}");
-                DebugLog.Chat($"Discarding bogus stats: kills={Kills}, deaths={Deaths}");
+                Log.Warn($"Discarding bogus stats: kills={Kills}, deaths={Deaths}");
+                Log.Chat($"Discarding bogus stats: kills={Kills}, deaths={Deaths}");
                 return;
             }
 
@@ -132,7 +133,7 @@ internal class StatisticsPlayer : ModPlayer
                 new Statistics((byte)Main.myPlayer, Kills + 1, Deaths).Serialize(packet);
                 packet.Send();
 
-                DebugLog.Chat($"Debug requested +1 kill for {Player.name}. Kills: {Kills + 1}");
+                Log.Chat($"Debug requested +1 kill for {Player.name}. Kills: {Kills + 1}");
             }
         }
 #endif

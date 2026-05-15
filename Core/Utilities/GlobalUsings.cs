@@ -5,4 +5,4 @@
 //global using Point = Microsoft.Xna.Framework.Point;
 
 // Debug: logger and other debug features is used throughout the mod, we define the using here for easy access.
-global using PvPAdventure.Core.Debug;
+global using PvPAdventure.Core.Utilities;

@@ -9,7 +9,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace PvPAdventure.Core.Debug;
+namespace PvPAdventure.Core.Utilities;
 
 /// <summary>
 /// A static logging helper for PvPAdventure.
@@ -18,7 +18,7 @@ namespace PvPAdventure.Core.Debug;
 /// Example usage: DebugLog.Debug("Your debug message.");
 /// Output: [YourCallerFile] Your debug message.
 /// </summary>
-public static class DebugLog
+public static class Log
 {
     public static ILog Base
     {

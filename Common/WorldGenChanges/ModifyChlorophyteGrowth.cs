@@ -1,5 +1,6 @@
 ﻿using MonoMod.Cil;
 using PvPAdventure.Core.Config;
+using PvPAdventure.Core.Utilities;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.Utilities;
@@ -68,7 +69,7 @@ internal class ModifyChlorophyteGrowth : ModSystem
         }
         else
         {
-            DebugLog.Warn("Couldn't find ldc.i4 40 in WorldGen.Chlorophyte. Skipping that replacement.");
+            Log.Warn("Couldn't find ldc.i4 40 in WorldGen.Chlorophyte. Skipping that replacement.");
         }
 
         cursor.Index = 0;

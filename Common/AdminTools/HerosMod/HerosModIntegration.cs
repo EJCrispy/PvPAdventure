@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using PvPAdventure.Common.AdminTools.Tools.StartGameTool;
 using PvPAdventure.Common.GameTimer;
-using PvPAdventure.Core.Debug;
 using PvPAdventure.Core.Utilities;
 using System;
 using Terraria;
@@ -122,14 +121,14 @@ public sealed class HerosModIntegration : ModSystem
         if (!hasPerm)
         {
             //Main.NewText($"⛔ You lost permission to use the {permissionName} button!", Color.Red);
-            DebugLog.Info($"You lost permission for {permissionName} button. You cannot use it anymore.");
-            DebugLog.Chat($"You lost permission for {permissionName} button. You cannot use it anymore.");
+            Log.Info($"You lost permission for {permissionName} button. You cannot use it anymore.");
+            Log.Chat($"You lost permission for {permissionName} button. You cannot use it anymore.");
         }
         else
         {
             //Main.NewText($"✅ You regained permission to use the {permissionName} button!", Color.Green);
-            DebugLog.Info($"You regained permission for {permissionName} button. You can use it again.");
-            DebugLog.Chat($"You regained permission for {permissionName} button. You can use it again.");
+            Log.Info($"You regained permission for {permissionName} button. You can use it again.");
+            Log.Chat($"You regained permission for {permissionName} button. You can use it again.");
         }
     }
 }

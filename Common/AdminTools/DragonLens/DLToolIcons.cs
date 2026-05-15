@@ -15,11 +15,7 @@ internal sealed class DLToolIcons : ModSystem
     public static string StartGameKey => "StartGame";
     public static string EndGameKey => "EndGame";
     public static string PauseKey => "Pause";
-    public static string TeamAssignerKey => "TeamAssigner";
     public static string PointsSetterKey => "PointsSetter";
-    public static string AdminManagerKey => "AdminManager";
-    public static string OpenConfigKey => "OpenConfig";
-    public static string ArenasAdminKey => "ArenasAdmin";
 
     public static Asset<Texture2D>? GlowAlpha { get; private set; }
 
@@ -57,11 +53,7 @@ internal sealed class DLToolIcons : ModSystem
             provider.icons[StartGameKey] = Ass.Icon_StartGame.Value;
             provider.icons[EndGameKey] = Ass.Icon_EndGame.Value;
             provider.icons[PauseKey] = Ass.Icon_PauseGame.Value;
-            provider.icons[TeamAssignerKey] = Ass.Icon_TeamAssigner.Value;
             provider.icons[PointsSetterKey] = Ass.Icon_PointsSetter.Value;
-            provider.icons[AdminManagerKey] = Ass.Icon_AdminManager.Value;
-            provider.icons[OpenConfigKey] = Ass.Icon_ConfigOpen.Value;
-            provider.icons[ArenasAdminKey] = Ass.Icon_Arenas.Value;
         }
 
         ModContent.GetInstance<ToolbarHandler>().OnModLoad();

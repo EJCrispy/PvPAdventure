@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using PvPAdventure.Common.Spawnbox;
 using PvPAdventure.Common.Statistics;
+using PvPAdventure.Core.Utilities;
 using System;
 using System.IO;
 using System.Linq;
@@ -346,14 +347,14 @@ public class GameManager : ModSystem
 
         //OfficialMatchReporter.PostCompletedMatch(startUtc, endUtc);
 
-        DebugLog.Chat("Queued completed match for backend reporting");
-        DebugLog.Debug("Queued completed match for backend reporting");
+        Log.Chat("Queued completed match for backend reporting");
+        Log.Debug("Queued completed match for backend reporting");
     }
 
     // NOTE: This is not called on multiplayer clients (see CurrentPhase property).
     private void OnPhaseChange(Phase oldPhase, Phase newPhase)
     {
-        DebugLog.Chat("New GamePhase: " + newPhase + ", (old: " + oldPhase + ")");
+        Log.Chat("New GamePhase: " + newPhase + ", (old: " + oldPhase + ")");
 
         // Only save when a real match ends (Playing → Waiting transition)
         if (oldPhase == Phase.Playing && newPhase == Phase.Waiting)

@@ -4,6 +4,7 @@ using System.Net.Http.Json;
 using System.Runtime.InteropServices;
 using System.Text.Json.Serialization;
 using Microsoft.Xna.Framework;
+using PvPAdventure.Core.Utilities;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -93,7 +94,7 @@ public class DiscordSocialManager : ModSystem
 
             if (client == nint.Zero)
             {
-                DebugLog.Error("Failed to create Discord Social SDK client");
+                Log.Error("Failed to create Discord Social SDK client");
                 return;
             }
 
@@ -153,33 +154,33 @@ public class DiscordSocialManager : ModSystem
             http.DefaultRequestHeaders.Authorization = new("Bearer", accessToken);
 
             CurrentUser = await http.GetFromJsonAsync<User>("https://discord.com/api/v10/users/@me");
-            DebugLog.Debug(CurrentUser);
+            Log.Debug(CurrentUser);
         }
         catch (HttpRequestException e)
         {
-            DebugLog.Warn($"Unsuccessful in requesting Discord user {e}");
+            Log.Warn($"Unsuccessful in requesting Discord user {e}");
         }
         catch (Exception e)
         {
-            DebugLog.Error($"Unexpected error using Discord token {e}");
+            Log.Error($"Unexpected error using Discord token {e}");
         }
     }
 
     private static void OnLog(DiscordString message, LoggingSeverity sev, nint userData)
     {
-        DebugLog.Debug($"Discord/{sev}: {message}");
+        Log.Debug($"Discord/{sev}: {message}");
     }
 
     private static void OnStatusChanged(ClientStatus status, int error, int errorDetail, nint userData)
     {
-        DebugLog.Debug($"Discord client status changed: {status} (error {error}, detail {errorDetail})");
+        Log.Debug($"Discord client status changed: {status} (error {error}, detail {errorDetail})");
     }
 
     private static void OnAuthorization(ref nint result, DiscordString code, DiscordString redirectUri,
         ref nint userData)
     {
         var success = Discord_ClientResult_Successful(ref result);
-        DebugLog.Debug($"Authorization result successful: {success}");
+        Log.Debug($"Authorization result successful: {success}");
 
         if (success)
         {
@@ -205,7 +206,7 @@ public class DiscordSocialManager : ModSystem
         AuthorizationTokenType tokenType, int expiresIn, DiscordString scopes, nint userData)
     {
         var success = Discord_ClientResult_Successful(ref result);
-        DebugLog.Debug($"Token exchange result successful: {success}");
+        Log.Debug($"Token exchange result successful: {success}");
 
         if (success)
             ModContent.GetInstance<DiscordSocialManager>().CacheLocalFromToken(accessToken.ToString());
