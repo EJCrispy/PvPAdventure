@@ -219,10 +219,10 @@ internal class CombatPlayer : ModPlayer
         {
             var itemDef = new ItemDefinition(sourceItem.type);
             if (damageConfig.ItemDamage.TryGetValue(itemDef, out var multiplier))
-                modifiers.IncomingDamageMultiplier *= multiplier;
+                modifiers.FinalDamage *= multiplier;
             if (falloffConfig.PerItem.TryGetValue(itemDef, out var falloff) && falloff != null)
             {
-                modifiers.IncomingDamageMultiplier *= falloff.CalculateMultiplier(tileDistance);
+                modifiers.FinalDamage *= falloff.CalculateMultiplier(tileDistance);
                 hasIncurredFalloff = true;
             }
         }
@@ -230,15 +230,15 @@ internal class CombatPlayer : ModPlayer
         {
             var projDef = new ProjectileDefinition(modifiers.DamageSource.SourceProjectileType);
             if (damageConfig.ProjectileDamage.TryGetValue(projDef, out var multiplier))
-                modifiers.IncomingDamageMultiplier *= multiplier;
+                modifiers.FinalDamage *= multiplier;
             if (falloffConfig.PerProjectile.TryGetValue(projDef, out var falloff) && falloff != null)
             {
-                modifiers.IncomingDamageMultiplier *= falloff.CalculateMultiplier(tileDistance);
+                modifiers.FinalDamage *= falloff.CalculateMultiplier(tileDistance);
                 hasIncurredFalloff = true;
             }
         }
         if (!hasIncurredFalloff && falloffConfig.Default != null)
-            modifiers.IncomingDamageMultiplier *= falloffConfig.Default.CalculateMultiplier(tileDistance);
+            modifiers.FinalDamage *= falloffConfig.Default.CalculateMultiplier(tileDistance);
     }
 
     public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
