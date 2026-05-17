@@ -214,16 +214,15 @@ internal class CombatPlayer : ModPlayer
         var falloffConfig = adventureConfig.WeaponBalance.Falloff;
         var tileDistance = Player.Distance(sourcePlayer.position) / 16f;
         var hasIncurredFalloff = false;
-        float totalPvPMultiplier = 1f;
         var sourceItem = modifiers.DamageSource.SourceItem;
         if (sourceItem != null && !sourceItem.IsAir)
         {
             var itemDef = new ItemDefinition(sourceItem.type);
             if (damageConfig.ItemDamage.TryGetValue(itemDef, out var multiplier))
-                totalPvPMultiplier *= multiplier;
+                modifiers.IncomingDamageMultiplier *= multiplier;
             if (falloffConfig.PerItem.TryGetValue(itemDef, out var falloff) && falloff != null)
             {
-                totalPvPMultiplier *= falloff.CalculateMultiplier(tileDistance);
+                modifiers.IncomingDamageMultiplier *= falloff.CalculateMultiplier(tileDistance);
                 hasIncurredFalloff = true;
             }
         }
@@ -231,19 +230,15 @@ internal class CombatPlayer : ModPlayer
         {
             var projDef = new ProjectileDefinition(modifiers.DamageSource.SourceProjectileType);
             if (damageConfig.ProjectileDamage.TryGetValue(projDef, out var multiplier))
-                totalPvPMultiplier *= multiplier;
+                modifiers.IncomingDamageMultiplier *= multiplier;
             if (falloffConfig.PerProjectile.TryGetValue(projDef, out var falloff) && falloff != null)
             {
-                totalPvPMultiplier *= falloff.CalculateMultiplier(tileDistance);
+                modifiers.IncomingDamageMultiplier *= falloff.CalculateMultiplier(tileDistance);
                 hasIncurredFalloff = true;
             }
         }
         if (!hasIncurredFalloff && falloffConfig.Default != null)
-            totalPvPMultiplier *= falloffConfig.Default.CalculateMultiplier(tileDistance);
-        modifiers.ModifyHurtInfo += (ref Player.HurtInfo info) =>
-        {
-            info.Damage = (int)(info.Damage * totalPvPMultiplier);
-        };
+            modifiers.IncomingDamageMultiplier *= falloffConfig.Default.CalculateMultiplier(tileDistance);
     }
 
     public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
