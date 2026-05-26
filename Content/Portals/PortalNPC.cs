@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using PvPAdventure.Common.Travel;
 using PvPAdventure.Common.Travel.Portals;
+using PvPAdventure.Core.Config;
 using System;
 using System.IO;
 using Terraria;
@@ -289,8 +290,10 @@ public sealed class PortalNPC : ModNPC
         Vector2 origin = frame.Size() * 0.5f;
         Vector2 position = NPC.Center - screenPos;
 
-        const float interactionRange = 160; // TODO: Use config value here, similar to beds!
-        const float interactionRangeSquared = interactionRange * interactionRange;
+        var config = ModContent.GetInstance<ServerConfig>();
+        //const float interactionRange = 160; // TODO: Use config value here, similar to beds!
+        float interactionRange = config.TravelSystem.TravelRegionRadiusTiles * 16;
+        float interactionRangeSquared = interactionRange * interactionRange;
         bool isMyTeam = Main.LocalPlayer.team == OwnerTeam;
 
         float distanceSquared = Vector2.DistanceSquared(Main.LocalPlayer.Center, NPC.Center);
@@ -310,7 +313,7 @@ public sealed class PortalNPC : ModNPC
         if (!withinRange)
             return false;
 
-        if (TryGetOwner(out Player owner))
+        if (isMyTeam && TryGetOwner(out Player owner))
             PortalDrawer.DrawHoverIcon(sb, owner, NPC.Center, Main.teamColor[OwnerTeam], 1f);
 
         return false;

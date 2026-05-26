@@ -227,10 +227,6 @@ public class ServerConfig : ModConfig
         public int TravelRegionRadiusTiles = 8;
 
         [RequiresField(nameof(IsTravelSystemEnabled))]
-        [DefaultValue(true)]
-        public bool ShowPortalCreationProjectile = true;
-
-        [RequiresField(nameof(IsTravelSystemEnabled))]
         [Range(-60, 60)]
         [DefaultValue(30)]
         public int PortalCreationOffset = 30;

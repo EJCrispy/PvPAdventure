@@ -153,35 +153,11 @@ public static class PortalDrawer
         sb.Draw(iconTexture, drawPos, source, drawColor, 0f, origin, iconScale, SpriteEffects.None, 0f);
     }
 
-    //public static void DrawPortalPreview(SpriteBatch sb, Player player, Vector2 position, float scale, bool outline = true, Color drawColor = default, float blackOutlineDistance = 4f, float colorOutlineDistance = 3f)
-//    {
-//        Texture2D texture = GetPortalAsset(player).Value;
-//        Rectangle source = GetPortalFrameRectangle(texture);
-//        Vector2 origin = source.Size() * 0.5f;
-//        Color borderColor = GetPortalColor(player);
-
-    //        if (drawColor == default)
-    //            drawColor = Color.White;
-
-    //        DrawPortal(sb, texture, position, source, origin, scale, drawColor, borderColor, outline, blackOutlineDistance, colorOutlineDistance);
-    //    }
-
-    //    public static void DrawPortal(SpriteBatch sb, Texture2D texture, Vector2 position, Rectangle source, Vector2 origin, float scale, Color drawColor, Color borderColor, bool outline, float blackOutlineDistance = 4f, float colorOutlineDistance = 3f)
-    //    {
-    //        if (outline)
-    //        {
-    //            float alphaScale = 0.9f * drawColor.A / 255f;
-    //            //DrawTextureOutline(sb, texture, position, source, origin, Color.Yellow * alphaScale, scale, blackOutlineDistance);
-    //            DrawTextureOutline(sb, texture, position, source, origin, borderColor * alphaScale, scale, colorOutlineDistance);
-    //        }
-
-    //        sb.Draw(texture, position, source, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
-    //    }
     //private static void DrawTextureOutline(SpriteBatch sb, Texture2D texture, Vector2 position, Rectangle source, Vector2 origin, Color color, float scale, float distance)
-    //    {
-    //        Vector2[] offsets =
-    //        [
-    //            new Vector2(-distance, 0f),
+    //{
+    //    Vector2[] offsets =
+    //    [
+    //        new Vector2(-distance, 0f),
     //            new Vector2(distance, 0f),
     //            new Vector2(0f, -distance),
     //            new Vector2(0f, distance),
@@ -189,9 +165,9 @@ public static class PortalDrawer
     //            new Vector2(-distance, distance),
     //            new Vector2(distance, -distance),
     //            new Vector2(distance, distance)
-    //        ];
+    //    ];
 
-    //        for (int i = 0; i < offsets.Length; i++)
-    //            sb.Draw(texture, position + offsets[i], source, color, 0f, origin, scale, SpriteEffects.None, 0f);
-    //    }
+    //    for (int i = 0; i < offsets.Length; i++)
+    //        sb.Draw(texture, position + offsets[i], source, color, 0f, origin, scale, SpriteEffects.None, 0f);
+    //}
 }

@@ -191,16 +191,6 @@ Mods: {
 				DisplayName: Refund Purchases Item
 				Tooltip: ""
 			}
-
-			NextPageItem: {
-				DisplayName: Next Page Item
-				Tooltip: ""
-			}
-
-			PrevPageItem: {
-				DisplayName: Prev Page Item
-				Tooltip: ""
-			}
 		}
 
 		NPCs: {
@@ -1067,27 +1057,22 @@ Mods: {
 
 				AllowSpectating: {
 					Label: Allow Spectating
-					Tooltip: Spectate travel destinations by hovering them in the UI
+					Tooltip: Spectate beds, portals and world spawn by hovering them in the UI
 				}
 
 				TravelPortalCreationTimePreHardmodeSeconds: {
-					Label: "[i:PvPAdventure:PortalCreatorItem] Portal Creation Time (Pre-HM)"
+					Label: "[i:PvPAdventure/PortalCreatorItem] Portal Creator Use Time (Pre-HM)"
 					Tooltip: The use time in seconds it takes for a portal to be created in Pre-Hardmode
 				}
 
 				TravelPortalCreationTimeHardmodeSeconds: {
-					Label: "[i:PvPAdventure:PortalCreatorItem] Portal Creation Time (HM)"
+					Label: "[i:PvPAdventure/PortalCreatorItem] Portal Creator Use Time (HM)"
 					Tooltip: The use time in seconds it takes for a portal to be created in Hardmode
 				}
 
 				TravelRegionRadiusTiles: {
 					Label: Travel Region Tiles
 					Tooltip: The distance in tiles to beds and portals where you can access travel
-				}
-
-				ShowPortalCreationProjectile: {
-					Label: Show Portal Creation Projectile
-					Tooltip: ""
 				}
 
 				PortalCreationOffset: {
