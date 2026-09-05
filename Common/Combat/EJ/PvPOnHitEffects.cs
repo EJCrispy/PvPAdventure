@@ -139,6 +139,7 @@ internal class PvPOnHitEffects : ModPlayer
                     {
                         attackerEffects.ShadowHandCooldown = 50;
                         float angle = Main.rand.NextFloat(MathHelper.TwoPi);
+                        float radius = 300f;
                         Vector2 spawnPos = Player.Center + angle.ToRotationVector2() * radius;
                         Vector2 velocity = (Player.Center - spawnPos).SafeNormalize(Vector2.UnitY) * 12f;
 
