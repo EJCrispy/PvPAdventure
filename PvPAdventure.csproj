@@ -1,4 +1,4 @@
-﻿<Project>
+<Project>
 
 	<!-- Choose the SDK before its default properties are imported. -->
 	<PropertyGroup>
@@ -19,6 +19,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\ErkySSC\ErkySSC.csproj" />
 		<ProjectReference Include="..\PvPFramework\PvPFramework.csproj" />
 		<ProjectReference Include="..\PvPHub\PvPHub.csproj" />
 	</ItemGroup>
