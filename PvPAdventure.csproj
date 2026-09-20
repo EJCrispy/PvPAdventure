@@ -21,7 +21,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\ErkySSC\ErkySSC.csproj" />
 		<ProjectReference Include="..\PvPFramework\PvPFramework.csproj" />
-		<ProjectReference Include="..\PvPHub\PvPHub.csproj" />
+		<ProjectReference Include="..\Pylon\Pylon.csproj" />
 	</ItemGroup>
 
 	<!-- Tomat supplies these in Debug; the standard build needs them explicitly. -->
