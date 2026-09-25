@@ -5,7 +5,10 @@ using PvPAdventure.Common.Game.StatTrackers;
 using PvPAdventure.Common.Statistics;
 using PvPAdventure.Common.Travel.Beds;
 using PvPFramework.Common.Scoreboard;
+using PvPFramework.Common.RacePeriod;
+using Pylon.Common.SpiritAnimals;
 using PvPFramework.Common.Visualization.TileOutlines;
+using ReLogic.Content;
 using AdventureAssets = PvPAdventure.Core.Utilities.Ass;
 using FrameworkAssets = PvPFramework.Core.Utilities.Ass;
 using System.Collections.Generic;
@@ -27,10 +30,11 @@ public class PvPFrameworkIntegration : ModSystem
 {
     public override void Load()
     {
-        // Confine players to the spawn box until the match actually begins.
-        // While Waiting (pre-game), CanExit is false and the spawn box border blocks movement out.
-        PvPFramework.Common.Spawnbox.SpawnBoxSystem.CanExitProvider = () =>
-            ModContent.GetInstance<GameManager>().CurrentPhase == GameManager.Phase.Playing;
+        // Pylon owns cosmetic selection and synchronization; Framework owns race mechanics.
+        // The provider keeps that boundary data-driven and Bunny remains Framework's fallback.
+        RacePeriodRules.MountTypeProvider = static player =>
+            player.GetModPlayer<SpiritAnimalPlayer>().MountType;
+        RacePeriodRules.SpriteSheetProvider = ResolveSpiritAnimalSpriteSheet;
 
         // PvP Framework draws bed outlines; Adventure supplies the synchronized team ownership.
         BedOutlineTile.TeamResolver = ResolveBedTeam;
@@ -48,12 +52,41 @@ public class PvPFrameworkIntegration : ModSystem
         PvPFramework.Common.Combat.TeamBoss.TeamBossNPC.BossDamageDealt -= RecordBossDamage;
         ScoreboardPlayerInfoService.RowsProvider = null;
         BedOutlineTile.TeamResolver = null;
-        // Drop our delegate so it doesn't retain a reference to an unloaded GameManager.
-        PvPFramework.Common.Spawnbox.SpawnBoxSystem.CanExitProvider = static () => true;
+        RacePeriodRules.MountTypeProvider = null;
+        RacePeriodRules.SpriteSheetProvider = null;
     }
 
     private static Team? ResolveBedTeam(Point origin) =>
         ModContent.GetInstance<TeamBedSystem>().TryGetTeam(origin, out Team team) ? team : null;
+
+    private static RacePeriodSpriteSheet? ResolveSpiritAnimalSpriteSheet(Player player)
+    {
+        // Dedicated servers own selection and physics but never load or draw cosmetic textures.
+        SpiritAnimalPlayer spiritAnimal = player.GetModPlayer<SpiritAnimalPlayer>();
+        if (Main.dedServ || !spiritAnimal.TryGetCustomSpriteSheet(out SpiritAnimalSpriteSheet sheet))
+            return null;
+
+        Asset<Texture2D> foreground = string.IsNullOrWhiteSpace(sheet.ForegroundTexturePath)
+            ? null
+            : ModContent.Request<Texture2D>(sheet.ForegroundTexturePath);
+
+        return new RacePeriodSpriteSheet(
+            BodyTexture: ModContent.Request<Texture2D>(sheet.BodyTexturePath),
+            ForegroundTexture: foreground,
+            TotalFrames: sheet.TotalFrames,
+            Standing: ConvertAnimation(sheet.Standing),
+            Running: ConvertAnimation(sheet.Running),
+            Airborne: ConvertAnimation(sheet.Airborne),
+            PoweredAirborne: ConvertAnimation(sheet.PoweredAirborne),
+            DrawOffset: sheet.DrawOffset.ToVector2(),
+            FrameCropBottom: sheet.FrameCropBottom,
+            Scale: sheet.Scale,
+            AnchorPlayerHeight: sheet.AnchorPlayerHeight);
+    }
+
+    private static RacePeriodAnimationRange ConvertAnimation(SpiritAnimalAnimationRange animation) =>
+        new(animation.StartFrame, animation.FrameCount, animation.FrameDelay,
+            animation.ScaleWithHorizontalSpeed);
 
     private static void AwardNpcKill(Player player, NPC npc) =>
         ModContent.GetInstance<PointsManager>().AwardNpcKillToTeam((Team)player.team, npc);

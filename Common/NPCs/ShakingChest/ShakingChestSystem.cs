@@ -1,9 +1,11 @@
 using System.Reflection;
 using log4net;
+using Microsoft.Xna.Framework;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
 using PvPAdventure.Common.Game;
+using PvPAdventure.Core.Compat;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -129,9 +131,19 @@ public sealed class ShakingChestSystem : ModSystem
             Spawn();
     }
 
-    private static void Spawn() => NPC.NewNPC(
-        Entity.GetSource_NaturalSpawn(),
-        Main.spawnTileX * 16,
-        (Main.spawnTileY - 3) * 16 - 54,
-        ShakingChestNPC.TargetType);
+    private static void Spawn()
+    {
+        Rectangle area = AdventureRegionSystem.WorldArea;
+        int x = area.IsEmpty ? Main.spawnTileX * 16 : area.Center.X;
+        int y = (Main.spawnTileY - 1) * 16;
+
+        int npcIndex = NPC.NewNPC(
+            Entity.GetSource_NaturalSpawn(),
+            x,
+            y,
+            ShakingChestNPC.TargetType);
+
+        if (!area.IsEmpty && npcIndex >= 0 && npcIndex < Main.maxNPCs)
+            ShakingChestNPC.PlaceInsideSpawnBox(Main.npc[npcIndex], area);
+    }
 }
