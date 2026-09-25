@@ -21,8 +21,6 @@
 		<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 	</PackageReference>
 
-	<Publicize Include="tModLoader"
-			   IncludeVirtualMembers="false"
-			   IncludeCompilerGeneratedMembers="false" />
+	<Publicize Include="tModLoader" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false" />
 </ItemGroup>
 </Project>
